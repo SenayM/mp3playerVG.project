@@ -1,7 +1,31 @@
 package com.mp3player.otherclasses;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 public class DisplayControlers extends PlayerMethods {
 	//PlayerMethods pm=new PlayerMethods();
 	//ViewPlayer vp=new ViewPlayer();
+	private int listhight=23;
+	
+	
+	
+	public void updatePlaylist(DefaultListModel<String> myList,JList<String> listPlaylist){
+		myList.addElement(getCurrentFile());
+		listhight+=18;
+		listPlaylist.setBounds(28, 150, 323, listhight);
+	}
+	
+	public void updatePlaylistOnOpen(DefaultListModel<String> myList,JList<String> listPlaylist){
+		
+		if (getFileName()!="NoFile"){
+		myList.removeAllElements();
+		myList.addElement(getFileName());
+		listPlaylist.setBounds(28, 150, 323, 23);
+		}
+	}
+	
+	
 	public void changePlayPause(){
 		
 		//System.out.println(getFileName());

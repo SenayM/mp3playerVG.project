@@ -3,6 +3,7 @@ package com.mp3player.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -13,11 +14,15 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class ViewPlayer {
 
 	DisplayControlers dc=new DisplayControlers();
 	PlayerMethods pm=new PlayerMethods();
+	
+	DefaultListModel<String> myList=new DefaultListModel<String>();
+	JList<String> listPlaylist = new JList<String>();
 	
 	JLabel lblNowplaying = new JLabel("NowPlaying");
 	private JFrame frmMyMpPlayer;
@@ -60,6 +65,7 @@ public class ViewPlayer {
 			public void actionPerformed(ActionEvent arg0) {
 				pm.open();
 				pm.updateDisplay(lblNowplaying);
+				dc.updatePlaylistOnOpen(myList, listPlaylist);
 			}
 		});
 		btnOpen.setBounds(28, 11, 116, 23);
@@ -126,6 +132,13 @@ public class ViewPlayer {
 		frmMyMpPlayer.getContentPane().add(lblDisplayPlayList);
 		
 		JButton btnAddtoplaylist = new JButton("Add File To Playlist");
+		btnAddtoplaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pm.addToPlaylist();
+				dc.updatePlaylist(myList,listPlaylist);
+				
+			}
+		});
 		btnAddtoplaylist.setBounds(267, 122, 147, 23);
 		frmMyMpPlayer.getContentPane().add(btnAddtoplaylist);
 		
@@ -145,5 +158,11 @@ public class ViewPlayer {
 		});
 		btnPause.setBounds(97, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnPause);
+		
+		
+		listPlaylist.setBounds(28, 150, 323, 23);
+		frmMyMpPlayer.getContentPane().add(listPlaylist);
+		
+		listPlaylist.setModel(myList);
 	}
 }
