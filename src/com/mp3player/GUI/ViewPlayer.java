@@ -94,6 +94,7 @@ public class ViewPlayer {
 		btnPrevious.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pm.previous();
+				pm.updateDisplay(lblNowplaying);
 			}
 		});
 		btnPrevious.setBounds(270, 45, 72, 23);
@@ -103,6 +104,7 @@ public class ViewPlayer {
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pm.next();
+				pm.updateDisplay(lblNowplaying);
 				//dc.changePlayPause();
 			}
 		});

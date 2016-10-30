@@ -14,6 +14,7 @@ public class DisplayControlers extends PlayerMethods {
 		myList.addElement(getCurrentFile());
 		listhight+=18;
 		listPlaylist.setBounds(28, 150, 323, listhight);
+		
 	}
 	
 	public void updatePlaylistOnOpen(DefaultListModel<String> myList,JList<String> listPlaylist){

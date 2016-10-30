@@ -19,16 +19,20 @@ public class PlayerMethods implements PlayerInterface {
 	public static String fileName="NoFile";
 	public static ArrayList<String> fileList=new ArrayList<String>();
 	public static int playerIndex=0;
+	public static int displayIndex=0;
 	
 	public File file=new File("none");
 	
 	
 	
+	public static void setFileName(String fileName) {
+		PlayerMethods.fileName = fileName;
+	}
 	public String getFileName(){
 		return fileName;
 	}
 	public void updateDisplay(JLabel lblNowPlaying){
-		lblNowPlaying.setText(file.getName());
+		lblNowPlaying.setText(getCurrentFile());
 		
 		}
 	@Override
@@ -55,6 +59,11 @@ public class PlayerMethods implements PlayerInterface {
 	@Override
 	public void next() {
 		player.skipForward();
+		displayTester();	
+		while(displayIndex<playerIndex){
+			displayIndex++;
+			//setFileName(fileList.get(displayIndex) );
+		}
 		
 		
 	}
@@ -62,7 +71,14 @@ public class PlayerMethods implements PlayerInterface {
 	@Override
 	public void previous() {
 		player.skipBackward();
+		displayIndex--;
 		
+	}
+	public void displayTester(){
+		System.out.println("playerIndex : "+playerIndex);
+		System.out.println("dispayindex : "+displayIndex);
+		System.out.println("getCurrentFile() : "+getCurrentFile());
+		System.out.println("getFileName() : "+getFileName());
 		
 	}
 
@@ -89,6 +105,7 @@ public class PlayerMethods implements PlayerInterface {
 			player.addToPlayList(file);
 			playerIndex++;	
 			fileList.add(file.getName());
+			displayTester();
 					
 		}
 		
@@ -111,7 +128,7 @@ public class PlayerMethods implements PlayerInterface {
 				fileName=file.getName();
 				fileList.clear();
 				fileList.add(fileName);	
-				
+				displayTester();
 			}
 			
 				
