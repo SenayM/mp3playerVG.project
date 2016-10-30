@@ -4,6 +4,9 @@ import jaco.mp3.player.*;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.mp3player.interfaces.PlayerInterface;
 
 
@@ -14,11 +17,14 @@ public class PlayerMethods implements PlayerInterface {
 	
 	public File file=new File("none");
 	
+	public void updateDisplay(JLabel lblNowPlaying){
+		lblNowPlaying.setText(file.getName());
+		}
 	@Override
 	public void play() {
-		/*if(player.getName()==null)
+		if(file.getName()=="none")
 			JOptionPane.showMessageDialog(null, "Please choose mp3 file first","Error Message",JOptionPane.ERROR_MESSAGE);
-		else*/
+		else
 		player.play();
 	
 	}
@@ -37,10 +43,7 @@ public class PlayerMethods implements PlayerInterface {
 
 	@Override
 	public void next() {
-		System.out.println(player.getName());
 		player.skipForward();
-		
-		
 	}
 
 	@Override
@@ -67,7 +70,7 @@ public class PlayerMethods implements PlayerInterface {
 		
 	}
 
-	@Override
+	
 	public void open() {
 		JFileChooser fileChooser=new JFileChooser();
 			int returnval=fileChooser.showOpenDialog( null);

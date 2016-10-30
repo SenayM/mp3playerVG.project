@@ -18,20 +18,22 @@ public class ViewPlayer {
 
 	DisplayControlers dc=new DisplayControlers();
 	PlayerMethods pm=new PlayerMethods();
+	
+	JLabel lblNowplaying = new JLabel("NowPlaying");
 	private JFrame frmMyMpPlayer;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+			EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					ViewPlayer window = new ViewPlayer();
 					window.frmMyMpPlayer.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+					}
 			}
 		});
 	}
@@ -57,6 +59,7 @@ public class ViewPlayer {
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pm.open();
+				pm.updateDisplay(lblNowplaying);
 			}
 		});
 		btnOpen.setBounds(28, 11, 116, 23);
@@ -109,7 +112,7 @@ public class ViewPlayer {
 		lblDisplay.setBounds(28, 88, 89, 14);
 		frmMyMpPlayer.getContentPane().add(lblDisplay);
 		
-		JLabel lblNowplaying = new JLabel("NowPlaying");
+		
 		lblNowplaying.setForeground(Color.BLUE);
 		lblNowplaying.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNowplaying.setBounds(122, 88, 292, 14);

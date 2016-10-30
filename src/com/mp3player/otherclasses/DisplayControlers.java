@@ -1,8 +1,8 @@
 package com.mp3player.otherclasses;
 
 public class DisplayControlers {
-	PlayerMethods pm=new PlayerMethods();
-	
+	//PlayerMethods pm=new PlayerMethods();
+	//ViewPlayer vp=new ViewPlayer();
 	public void changePlayPause(){
 		
 		/*
@@ -20,5 +20,10 @@ public class DisplayControlers {
 			}*/
 		
 	}
+	/*public void updateDisplay(JLabel lblNowPlaying){
+		PlayerMethods pm=new PlayerMethods();
+		lblNowPlaying.setText(pm.file.getName());
+		System.out.println(pm.file.getName());
+	}*/
 
 }
