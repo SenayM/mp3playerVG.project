@@ -13,10 +13,16 @@ import com.mp3player.interfaces.PlayerInterface;
 
 public class PlayerMethods implements PlayerInterface {
 	
-	MP3Player player=new MP3Player();
 	
+	MP3Player player=new MP3Player();
+	public static String fileName="Bado Filename ";
 	public File file=new File("none");
 	
+	
+	
+	public String getFileName(){
+		return fileName;
+	}
 	public void updateDisplay(JLabel lblNowPlaying){
 		lblNowPlaying.setText(file.getName());
 		}
@@ -44,6 +50,7 @@ public class PlayerMethods implements PlayerInterface {
 	@Override
 	public void next() {
 		player.skipForward();
+		
 	}
 
 	@Override
@@ -79,13 +86,15 @@ public class PlayerMethods implements PlayerInterface {
 				player.stop();
 				this.player=new MP3Player(file);
 				player.play();
+				fileName=file.getName();
+				
 				
 			}
 			
 				
 		
 	}
-
+	
 	
 
 }

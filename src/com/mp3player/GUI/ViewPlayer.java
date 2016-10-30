@@ -97,6 +97,7 @@ public class ViewPlayer {
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pm.next();
+				//dc.changePlayPause();
 			}
 		});
 		btnNext.setBounds(342, 45, 72, 23);

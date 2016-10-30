@@ -1,10 +1,10 @@
 package com.mp3player.otherclasses;
-
-public class DisplayControlers {
+public class DisplayControlers extends PlayerMethods {
 	//PlayerMethods pm=new PlayerMethods();
 	//ViewPlayer vp=new ViewPlayer();
 	public void changePlayPause(){
 		
+		//System.out.println(getFileName());
 		/*
 		if (playpause.getText()=="Play"){
 			if (!pm.isThereFile())
