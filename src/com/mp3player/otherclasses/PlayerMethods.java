@@ -9,7 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.mp3player.interfaces.PlayerInterface;
-
+/**
+ * 
+ * @author Senay M.
+ *@version 2,0
+ */
 
 
 public class PlayerMethods implements PlayerInterface {

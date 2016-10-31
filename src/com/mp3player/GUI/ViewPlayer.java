@@ -1,4 +1,9 @@
 package com.mp3player.GUI;
+/**
+ * 
+ * @author Senay M.
+ *@version 2,0
+ */
 
 
 

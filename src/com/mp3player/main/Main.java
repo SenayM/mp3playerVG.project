@@ -1,4 +1,9 @@
 package com.mp3player.main;
+/**
+ * 
+ * @author Senay M.
+ *@version 2,0
+ */
 
 public class Main {
 
