@@ -1,6 +1,6 @@
 package com.mp3player.GUI;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
@@ -12,6 +12,7 @@ import com.mp3player.otherclasses.PlayerMethods;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
@@ -171,9 +172,11 @@ public class ViewPlayer {
 		JButton btnAddtoplaylist = new JButton("Add File To Playlist");
 		btnAddtoplaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//if (dc.getFileName()!="NoFile") checkes if we click add to playlist before adding a single file
+				if (dc.getFileName()!="NoFile"){
 				pm.addToPlaylist();
 				dc.updatePlaylist(myList,listPlaylist);
-				
+				}
 			}
 		});
 		btnAddtoplaylist.setBounds(267, 122, 147, 23);

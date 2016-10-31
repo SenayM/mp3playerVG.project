@@ -14,26 +14,40 @@ import com.mp3player.interfaces.PlayerInterface;
 
 public class PlayerMethods implements PlayerInterface {
 	
-	
+	//Creation of player object
 	MP3Player player=new MP3Player();
+	//Static string fileName to control to control if the user clickes play befor opening file 
 	public static String fileName="NoFile";
+	public File file=new File("none");
+	//ArrayList fielList is responsible for adding items to Playlist display
 	public static ArrayList<String> fileList=new ArrayList<String>();
+	//Static variables playerIndex and displayIndex control our navigation through playlist, 
+	//playerIndex is internal for the player, display index is for the user interface display
 	public static int playerIndex=0;
 	public static int displayIndex=0;
-	
-	public File file=new File("none");
-	
-	
-	
+	/**
+	setter method to the string filename
+	**/
 	public static void setFileName(String fileName) {
 		PlayerMethods.fileName = fileName;
 	}
+	/**
+	getter method to the Stirng fileName
+	**/
 	public String getFileName(){
 		return fileName;
 	}
+	/**
+	 * updatedisplay while we open file
+	 * @param lblNowPlaying
+	 */
 	public void updateDisplay(JLabel lblNowPlaying){
 		lblNowPlaying.setText(getCurrentFile());
 			}
+	/**
+	 * updatedisplay while we navigate through playlist
+	 * @param lblNowPlaying
+	 */
 	public void updateDisplayOnNextPrevious(JLabel lblNowPlaying){
 		lblNowPlaying.setText(fileList.get(displayIndex));
 			}
@@ -63,7 +77,7 @@ public class PlayerMethods implements PlayerInterface {
 		player.skipForward();
 		
 		displayIndex++;
-		displayTester();
+		//displayTester();
 		/*while(displayIndex<playerIndex && displayIndex>=0){
 			displayIndex++;
 			//setFileName(fileList.get(displayIndex) );
@@ -77,7 +91,7 @@ public class PlayerMethods implements PlayerInterface {
 		player.skipBackward();
 		
 		displayIndex--;
-		displayTester();
+		//displayTester();
 		/*while(displayIndex<playerIndex && displayIndex>=0){
 			
 			//setFileName(fileList.get(displayIndex) );
@@ -86,6 +100,9 @@ public class PlayerMethods implements PlayerInterface {
 		
 		
 	}
+	/**Temporary method to test the value of the variables while debuging
+	 * 
+	 */
 	public void displayTester(){
 		System.out.println("playerIndex : "+playerIndex);
 		System.out.println("dispayindex : "+displayIndex);
@@ -117,7 +134,7 @@ public class PlayerMethods implements PlayerInterface {
 			player.addToPlayList(file);
 			playerIndex++;	
 			fileList.add(file.getName());
-			displayTester();
+			//displayTester();
 					
 		}
 		
@@ -140,7 +157,7 @@ public class PlayerMethods implements PlayerInterface {
 				fileName=file.getName();
 				fileList.clear();
 				fileList.add(fileName);	
-				displayTester();
+				//displayTester();
 			}
 			
 				
