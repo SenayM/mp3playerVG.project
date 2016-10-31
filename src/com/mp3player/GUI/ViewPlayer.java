@@ -100,6 +100,7 @@ public class ViewPlayer {
 				if(PlayerMethods.displayIndex>0){
 				pm.previous();
 				pm.updateDisplayOnNextPrevious(lblNowplaying);
+				listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
 				}
 			}
 		});
@@ -112,6 +113,8 @@ public class ViewPlayer {
 				if (PlayerMethods.displayIndex<PlayerMethods.playerIndex){
 				pm.next();
 				pm.updateDisplayOnNextPrevious(lblNowplaying);
+				listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
+				
 				//dc.changePlayPause();
 				}
 			}
@@ -166,11 +169,11 @@ public class ViewPlayer {
 		
 		JButton btnShuffle = new JButton("Shuffle");
 		btnShuffle.setBounds(143, 11, 79, 23);
-		frmMyMpPlayer.getContentPane().add(btnShuffle);
+		//frmMyMpPlayer.getContentPane().add(btnShuffle);
 		
 		JButton btnRepeat = new JButton("Repeat");
 		btnRepeat.setBounds(221, 11, 79, 23);
-		frmMyMpPlayer.getContentPane().add(btnRepeat);
+		//frmMyMpPlayer.getContentPane().add(btnRepeat);
 		
 		JButton btnPause = new JButton("Pause");
 		btnPause.addActionListener(new ActionListener() {
@@ -178,11 +181,11 @@ public class ViewPlayer {
 				pm.pause();
 			}
 		});
-		btnPause.setBounds(97, 45, 72, 23);
+		btnPause.setBounds(99, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnPause);
 		
 		
-		listPlaylist.setBounds(28, 150, 323, 23);
+		listPlaylist.setBounds(28, 150, 386, 23);
 		frmMyMpPlayer.getContentPane().add(listPlaylist);
 		
 		listPlaylist.setModel(myList);

@@ -23,6 +23,7 @@ public class DisplayControlers extends PlayerMethods {
 		myList.removeAllElements();
 		myList.addElement(getFileName());
 		listPlaylist.setBounds(28, 150, 323, 23);
+		listPlaylist.setSelectedIndex(0);
 		}
 	}
 	
