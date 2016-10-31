@@ -10,6 +10,10 @@ public class DisplayControlers extends PlayerMethods {
 	
 	
 	
+	public void setListhight(int listhight) {
+		this.listhight = listhight;
+	}
+
 	public void updatePlaylist(DefaultListModel<String> myList,JList<String> listPlaylist){
 		myList.addElement(getCurrentFile());
 		listhight+=18;

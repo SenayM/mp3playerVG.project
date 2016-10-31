@@ -67,7 +67,11 @@ public class ViewPlayer {
 		JButton btnOpen = new JButton("Open Media");
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				PlayerMethods.displayIndex=0;
+				PlayerMethods.playerIndex=0;
+				dc.setListhight(23);
 				pm.open();
+				
 				pm.updateDisplay(lblNowplaying);
 				dc.updatePlaylistOnOpen(myList, listPlaylist);
 			}
