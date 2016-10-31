@@ -18,6 +18,8 @@ import javax.swing.JList;
 
 public class ViewPlayer {
 
+
+	
 	DisplayControlers dc=new DisplayControlers();
 	PlayerMethods pm=new PlayerMethods();
 	
@@ -55,6 +57,8 @@ public class ViewPlayer {
 	 */
 	private void initialize() {
 		frmMyMpPlayer = new JFrame();
+		frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
+		frmMyMpPlayer.setBackground(Color.GRAY);
 		frmMyMpPlayer.setTitle("My MP3 Player");
 		frmMyMpPlayer.setBounds(100, 100, 450, 389);
 		frmMyMpPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,8 +97,10 @@ public class ViewPlayer {
 		JButton btnPrevious = new JButton("Previous");
 		btnPrevious.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(PlayerMethods.displayIndex>0){
 				pm.previous();
-				pm.updateDisplay(lblNowplaying);
+				pm.updateDisplayOnNextPrevious(lblNowplaying);
+				}
 			}
 		});
 		btnPrevious.setBounds(270, 45, 72, 23);
@@ -103,15 +109,29 @@ public class ViewPlayer {
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (PlayerMethods.displayIndex<PlayerMethods.playerIndex){
 				pm.next();
-				pm.updateDisplay(lblNowplaying);
+				pm.updateDisplayOnNextPrevious(lblNowplaying);
 				//dc.changePlayPause();
+				}
 			}
 		});
 		btnNext.setBounds(342, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnNext);
 		
 		JButton btnChangeSkin = new JButton("Change Skin");
+		btnChangeSkin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+							
+					frmMyMpPlayer.getContentPane().setBackground(Color.BLUE);
+				if(frmMyMpPlayer.getContentPane().getBackground()==Color.BLUE)
+					frmMyMpPlayer.getContentPane().setBackground(Color.CYAN);
+				if(frmMyMpPlayer.getContentPane().getBackground()==Color.CYAN)
+					frmMyMpPlayer.getContentPane().setBackground(Color.BLACK);
+				if(frmMyMpPlayer.getContentPane().getBackground()==Color.BLACK)
+					frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
+			}
+		});
 		btnChangeSkin.setBounds(298, 11, 116, 23);
 		frmMyMpPlayer.getContentPane().add(btnChangeSkin);
 		

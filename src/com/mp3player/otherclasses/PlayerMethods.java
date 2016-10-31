@@ -33,8 +33,10 @@ public class PlayerMethods implements PlayerInterface {
 	}
 	public void updateDisplay(JLabel lblNowPlaying){
 		lblNowPlaying.setText(getCurrentFile());
-		
-		}
+			}
+	public void updateDisplayOnNextPrevious(JLabel lblNowPlaying){
+		lblNowPlaying.setText(fileList.get(displayIndex));
+			}
 	@Override
 	public void play() {
 		if(file.getName()=="none")
@@ -59,11 +61,13 @@ public class PlayerMethods implements PlayerInterface {
 	@Override
 	public void next() {
 		player.skipForward();
-		displayTester();	
-		while(displayIndex<playerIndex){
+		
+		displayIndex++;
+		displayTester();
+		/*while(displayIndex<playerIndex && displayIndex>=0){
 			displayIndex++;
 			//setFileName(fileList.get(displayIndex) );
-		}
+		}*/
 		
 		
 	}
@@ -71,7 +75,15 @@ public class PlayerMethods implements PlayerInterface {
 	@Override
 	public void previous() {
 		player.skipBackward();
+		
 		displayIndex--;
+		displayTester();
+		/*while(displayIndex<playerIndex && displayIndex>=0){
+			
+			//setFileName(fileList.get(displayIndex) );
+		}*/
+		
+		
 		
 	}
 	public void displayTester(){
