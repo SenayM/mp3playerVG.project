@@ -18,7 +18,7 @@ import javax.swing.JList;
 
 public class ViewPlayer {
 
-
+	int colorIndex=1;
 	
 	DisplayControlers dc=new DisplayControlers();
 	PlayerMethods pm=new PlayerMethods();
@@ -125,14 +125,22 @@ public class ViewPlayer {
 		JButton btnChangeSkin = new JButton("Change Skin");
 		btnChangeSkin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-							
-					frmMyMpPlayer.getContentPane().setBackground(Color.BLUE);
-				if(frmMyMpPlayer.getContentPane().getBackground()==Color.BLUE)
-					frmMyMpPlayer.getContentPane().setBackground(Color.CYAN);
-				if(frmMyMpPlayer.getContentPane().getBackground()==Color.CYAN)
-					frmMyMpPlayer.getContentPane().setBackground(Color.BLACK);
-				if(frmMyMpPlayer.getContentPane().getBackground()==Color.BLACK)
-					frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
+					if (colorIndex==0)	{	
+							frmMyMpPlayer.getContentPane().setBackground(Color.BLACK);
+							colorIndex++;
+					}
+					else if (colorIndex==1)	{	
+						frmMyMpPlayer.getContentPane().setBackground(Color.GREEN);
+						colorIndex++;
+						}
+					else if (colorIndex==2)	{	
+						frmMyMpPlayer.getContentPane().setBackground(Color.RED);
+						colorIndex++;
+						}
+					else if (colorIndex==3)	{	
+						frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
+						colorIndex=0;
+						}
 			}
 		});
 		btnChangeSkin.setBounds(298, 11, 116, 23);
