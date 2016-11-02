@@ -1,8 +1,8 @@
 package com.mp3player.GUI;
 /**
  * 
- * @author Senay M.
- *@version 2,0
+ /*** @author Senay M.
+ *@version 3,0
  */
 
 
@@ -50,7 +50,7 @@ public class ViewPlayer implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 			EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -61,7 +61,7 @@ public class ViewPlayer implements ActionListener{
 					}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -82,7 +82,7 @@ public class ViewPlayer implements ActionListener{
 		frmMyMpPlayer.setBounds(100, 100, 450, 389);
 		frmMyMpPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMyMpPlayer.getContentPane().setLayout(null);
-		
+		frmMyMpPlayer.setVisible(true);
 		
 		
 		btnOpen.setBounds(28, 11, 116, 23);

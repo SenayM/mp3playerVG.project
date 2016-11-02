@@ -1,8 +1,8 @@
 package com.mp3player.otherclasses;
 /**
  * 
- * @author Senay M.
- *@version 2,0
+ /* @author Senay M.
+ *@version 3,0
  */
 
 
