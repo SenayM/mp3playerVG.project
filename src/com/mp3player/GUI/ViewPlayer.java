@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
-public class ViewPlayer {
+public class ViewPlayer implements ActionListener{
 
 	int colorIndex=1;
 	
@@ -32,8 +32,20 @@ public class ViewPlayer {
 	DefaultListModel<String> myList=new DefaultListModel<String>();
 	JList<String> listPlaylist = new JList<String>();
 	
-	JLabel lblNowplaying = new JLabel("NowPlaying");
+	private JLabel lblNowplaying = new JLabel("NowPlaying");
 	private JFrame frmMyMpPlayer;
+	
+	private JButton btnOpen = new JButton("Open Media");
+	private JButton btnPlaypause = new JButton("Play");
+	private JButton btnStop = new JButton("Stop");
+	private JButton btnPrevious = new JButton("Previous");
+	private JButton btnNext = new JButton("Next");
+	private JButton btnChangeSkin = new JButton("Change Skin");
+	private JLabel lblDisplay = new JLabel("Now Playing :");
+	private JLabel lblDisplayPlayList = new JLabel("Play List");
+	private JButton btnAddtoplaylist = new JButton("Add File To Playlist");
+	private JButton btnPause = new JButton("Pause");
+
 
 	/**
 	 * Launch the application.
@@ -56,6 +68,7 @@ public class ViewPlayer {
 	 */
 	public ViewPlayer() {
 		initialize();
+		addActionListeners();
 	}
 
 	/**
@@ -70,93 +83,36 @@ public class ViewPlayer {
 		frmMyMpPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMyMpPlayer.getContentPane().setLayout(null);
 		
-		JButton btnOpen = new JButton("Open Media");
-		btnOpen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				PlayerMethods.displayIndex=0;
-				PlayerMethods.playerIndex=0;
-				dc.setListhight(23);
-				pm.open();
-				
-				pm.updateDisplay(lblNowplaying);
-				dc.updatePlaylistOnOpen(myList, listPlaylist);
-			}
-		});
+		
+		
 		btnOpen.setBounds(28, 11, 116, 23);
 		frmMyMpPlayer.getContentPane().add(btnOpen);
 		
-		JButton btnPlaypause = new JButton("Play");
-		btnPlaypause.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				pm.play();
-				
-			}
-		});
+		
+		
 		btnPlaypause.setBounds(28, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnPlaypause);
 		
-		JButton btnStop = new JButton("Stop");
-		btnStop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pm.stop();
-			}
-		});
+		
+		
 		btnStop.setBounds(185, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnStop);
 		
-		JButton btnPrevious = new JButton("Previous");
-		btnPrevious.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(PlayerMethods.displayIndex>0){
-				pm.previous();
-				pm.updateDisplayOnNextPrevious(lblNowplaying);
-				listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
-				}
-			}
-		});
+		
 		btnPrevious.setBounds(270, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnPrevious);
 		
-		JButton btnNext = new JButton("Next");
-		btnNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (PlayerMethods.displayIndex<PlayerMethods.playerIndex){
-				pm.next();
-				pm.updateDisplayOnNextPrevious(lblNowplaying);
-				listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
-				
-				//dc.changePlayPause();
-				}
-			}
-		});
+		
+		
 		btnNext.setBounds(342, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnNext);
 		
-		JButton btnChangeSkin = new JButton("Change Skin");
-		btnChangeSkin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-					if (colorIndex==0)	{	
-							frmMyMpPlayer.getContentPane().setBackground(Color.BLACK);
-							colorIndex++;
-					}
-					else if (colorIndex==1)	{	
-						frmMyMpPlayer.getContentPane().setBackground(Color.GREEN);
-						colorIndex++;
-						}
-					else if (colorIndex==2)	{	
-						frmMyMpPlayer.getContentPane().setBackground(Color.RED);
-						colorIndex++;
-						}
-					else if (colorIndex==3)	{	
-						frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
-						colorIndex=0;
-						}
-			}
-		});
+		
+		
 		btnChangeSkin.setBounds(298, 11, 116, 23);
 		frmMyMpPlayer.getContentPane().add(btnChangeSkin);
 		
-		JLabel lblDisplay = new JLabel("Now Playing :");
+		
 		lblDisplay.setForeground(Color.BLUE);
 		lblDisplay.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDisplay.setBounds(28, 88, 89, 14);
@@ -168,39 +124,27 @@ public class ViewPlayer {
 		lblNowplaying.setBounds(122, 88, 292, 14);
 		frmMyMpPlayer.getContentPane().add(lblNowplaying);
 		
-		JLabel lblDisplayPlayList = new JLabel("Play List");
+		
 		lblDisplayPlayList.setForeground(Color.BLUE);
 		lblDisplayPlayList.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDisplayPlayList.setBounds(28, 125, 89, 14);
 		frmMyMpPlayer.getContentPane().add(lblDisplayPlayList);
 		
-		JButton btnAddtoplaylist = new JButton("Add File To Playlist");
-		btnAddtoplaylist.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//if (dc.getFileName()!="NoFile") checkes if we click add to playlist before adding a single file
-				if (dc.getFileName()!="NoFile"){
-				pm.addToPlaylist();
-				dc.updatePlaylist(myList,listPlaylist);
-				}
-			}
-		});
+		
+		
 		btnAddtoplaylist.setBounds(267, 122, 147, 23);
 		frmMyMpPlayer.getContentPane().add(btnAddtoplaylist);
 		
-		JButton btnShuffle = new JButton("Shuffle");
-		btnShuffle.setBounds(143, 11, 79, 23);
+		
+		//btnShuffle.setBounds(143, 11, 79, 23);
 		//frmMyMpPlayer.getContentPane().add(btnShuffle);
 		
-		JButton btnRepeat = new JButton("Repeat");
-		btnRepeat.setBounds(221, 11, 79, 23);
+		
+		//btnRepeat.setBounds(221, 11, 79, 23);
 		//frmMyMpPlayer.getContentPane().add(btnRepeat);
 		
-		JButton btnPause = new JButton("Pause");
-		btnPause.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pm.pause();
-			}
-		});
+		
+		
 		btnPause.setBounds(99, 45, 72, 23);
 		frmMyMpPlayer.getContentPane().add(btnPause);
 		
@@ -209,5 +153,90 @@ public class ViewPlayer {
 		frmMyMpPlayer.getContentPane().add(listPlaylist);
 		
 		listPlaylist.setModel(myList);
+	}
+	public void addActionListeners(){
+		btnOpen.addActionListener(this );
+		btnPlaypause.addActionListener(this);
+		btnStop.addActionListener(this);
+		btnPrevious.addActionListener(this);
+		btnNext.addActionListener(this); 
+		btnChangeSkin.addActionListener(this);
+		btnAddtoplaylist.addActionListener(this);
+		btnPause.addActionListener(this);
+		
+	}
+	public void actionPerformed(ActionEvent e){
+		//If clicked open
+		if (e.getSource()== btnOpen){
+			PlayerMethods.displayIndex=0;
+			PlayerMethods.playerIndex=0;
+			dc.setListhight(23);
+			pm.open();
+			
+			pm.updateDisplay(lblNowplaying);
+			dc.updatePlaylistOnOpen(myList, listPlaylist);
+
+		}
+	
+		//If clicked play
+		if (e.getSource()==btnPlaypause){
+			pm.play();
+		}
+		//If clicked Pause
+		if (e.getSource()==btnPause) {
+			pm.pause();
+		}
+		//If clicked stop
+		if (e.getSource()==btnStop){
+			pm.stop();
+		}
+		//If clicked previous
+		if (e.getSource()==btnPrevious){
+
+			if(PlayerMethods.displayIndex>0){
+			pm.previous();
+			pm.updateDisplayOnNextPrevious(lblNowplaying);
+			listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
+			
+		}
+		}
+		//If clicked next
+		if (e.getSource()==btnNext){
+			if (PlayerMethods.displayIndex<PlayerMethods.playerIndex){
+				pm.next();
+				pm.updateDisplayOnNextPrevious(lblNowplaying);
+				listPlaylist.setSelectedIndex(PlayerMethods.displayIndex);
+				
+		}
+		}
+		//If clicked changeSkin
+		if (e.getSource()==btnChangeSkin){
+			if (colorIndex==0)	{	
+				frmMyMpPlayer.getContentPane().setBackground(Color.BLACK);
+				colorIndex++;
+		}
+		else if (colorIndex==1)	{	
+			frmMyMpPlayer.getContentPane().setBackground(Color.GREEN);
+			colorIndex++;
+			}
+		else if (colorIndex==2)	{	
+			frmMyMpPlayer.getContentPane().setBackground(Color.RED);
+			colorIndex++;
+			}
+		else if (colorIndex==3)	{	
+			frmMyMpPlayer.getContentPane().setBackground(Color.GRAY);
+			colorIndex=0;
+			}
+		}
+		//If clicked Addtoplaylist
+		if (e.getSource()==btnAddtoplaylist){
+		//if (dc.getFileName()!="NoFile") checkes if we click add to playlist before adding a single file
+			if (dc.getFileName()!="NoFile"){
+			pm.addToPlaylist();
+			dc.updatePlaylist(myList,listPlaylist);
+			}
+
+		}
+		
 	}
 }
